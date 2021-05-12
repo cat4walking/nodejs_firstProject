@@ -1,0 +1,31 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --inspect index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cat4walking/nodejs_firstProject.git"
+  },
+  "keywords": [
+    "nodejs",
+    "cat4walking",
+    "firstProject"
+  ],
+  "author": "cat4walking",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cat4walking/nodejs_firstProject/issues"
+  },
+  "homepage": "https://github.com/cat4walking/nodejs_firstProject#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
