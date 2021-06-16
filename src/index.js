@@ -19,6 +19,9 @@ app.get('/home', (req, res) => {
 app.get('/news', (req, res) => {
     res.render('news');
 });
+app.get('/search', (req, res) => {
+    res.render('search');
+});
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
