@@ -1,8 +1,17 @@
 <div class="mt-2">
-    <form method="GET">
+    <form method="POST" action="">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Search everything</label>
             <input type="text" name="q" class="form-control" id="search-input" placeholder="key word">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">gender</label>
+            <select name="gender" class="form-control" id="search-input">
+                <option value="male">male</option>
+                <option value="female">female</option>
+                <option value="orther">orther</option>
+            </select>
             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
         <button type="submit" class="btn btn-primary">Search</button>
