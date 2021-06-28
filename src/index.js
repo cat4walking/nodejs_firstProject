@@ -14,7 +14,8 @@ app.use(
         extended: true,
     }),
 );
-app.use(express.json());
+app.
+    use(express.json());
 app.engine(
     'hbs',
     handlebars({
@@ -30,7 +31,6 @@ app.set('views', path.join(__dirname, 'resource/views'));
 route(app);
 
 app.listen
-
 
     (port, () => {
         console.log(`Example app listening at http://localhost:${port}`);
