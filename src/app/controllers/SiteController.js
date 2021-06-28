@@ -8,4 +8,4 @@ class SiteController {
         res.render('search');
     }
 }
-module.exports = new SiteController;
+module.exports = new SiteController();
