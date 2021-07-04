@@ -1,1 +1,39 @@
-                                   @import 'variables';
+@import 'variables';
+@import 'base';
+a:hover{
+    text-decoration: none;
+}
+.navbar_brand__fontSize{
+    font-size: 2rem;
+}
+.card_space__top{
+    margin-top: 10px;
+}
+.container_img{
+    max-height: 214px;
+    width: 100%;
+    object-fit: contain;
+}
+.card_body__container{
+    text-align: center;
+}
+.btn_profile{
+    margin: 0 auto;
+    margin-top: 8px;
+}
+.nav_link__top{
+    margin-top: 7px;
+    font-size: 1.2rem;
+}
+.container_profile{
+    background-image: url('https://images.wallpaperscraft.com/image/bodybuilding_fitness_barbell_sport_102746_1366x768.jpg');
+    min-height: 100vh;
+    background-attachment: scroll, fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: grayscale(100%);
+}
+.text_show__name{
+    color: $color_dark;
+}

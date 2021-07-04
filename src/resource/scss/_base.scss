@@ -1,0 +1,20 @@
+@import 'variables';
+html{
+    font-size: 75%;
+}
+a:hover {
+    text-decoration: none;
+}
+.btn_action{
+    display: flex;
+    outline: none;
+    border-radius: 4px;
+    border: none;
+    background-color: $background_color;
+    color: $color_white;
+    cursor: pointer;
+    padding: 8px 6px 8px 6px;
+}
+.nav-link{
+    padding: 0 6px 0 6px;
+}
