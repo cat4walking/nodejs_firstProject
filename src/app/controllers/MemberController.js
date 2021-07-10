@@ -23,5 +23,29 @@ class MemberController {
 
             });
     }
+    // edit
+    edit(req, res, next) {
+        Member.findById(req.params.id).lean()
+            .then(member => res.render('members/edit', {
+                member
+            }))
+            .catch(next);
+    }
+    // [PUT] /members/:id
+    update(req, res, next) {
+        Member.updateOne({ _id: req.params.id }, req.body)
+            .then(() =>
+                res.redirect('/all/uploaded/members')
+            )
+            .catch(next)
+    }
+    // [DELETE]] /members/:id
+    destroy(req, res, next) {
+        Member.deleteOne({ _id: req.params.id })
+            .then(() => {
+                res.redirect('back')
+            })
+            .catch(next);
+    }
 }
 module.exports = new MemberController();

@@ -2,6 +2,25 @@
 html{
     font-size: 75%;
 }
+.selector-for-some-widget {
+    box-sizing: content-box;
+  }
+.justify_flex{
+    justify-content: flex-end;
+}
+.text_center{
+    display: flex;
+    justify-content: space-around;
+}
+.me-auto{
+    margin-left: auto !important;
+}
+.container{
+    height: 100%;
+}
+.card{
+    border: none;
+}
 a:hover {
     text-decoration: none;
 }

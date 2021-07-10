@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const app = express();
+const methodOverride = require('method-override');
 const handlebars = require('express-handlebars');
 // Using Node.js `require()`
 const { Console } = require('console');
@@ -16,11 +17,16 @@ app.use(
         extended: true,
     }),
 );
+app.use(methodOverride('_method'));
 app.use(express.json());
 app.engine(
     'hbs',
     handlebars({
         extname: '.hbs',
+        helpers: {
+            sum: (a, b) =>
+                a + b
+        }
     }),
 );
 app.set('view engine', 'hbs');

@@ -1,9 +1,9 @@
-<div class="mt-4">
+<div class="mt-2">
     <div class="row">
         {{#each member}}
         <div class="col-sm-6 col-lg-4">
-            <div class="card card_space__top">
-                <a href="/members/{{this.slug}}" class="">
+            <div class="card card_space__top mt-4">
+                <a href="/members/{{this.slug}}" class="img_link">
                     <img src="{{this.image}}" class="card-img-top container_img" alt="...">
                 </a>
                 <div class="card-body card_body__container">
@@ -11,7 +11,8 @@
                         <h5 class="card-title">{{this.name}}</h5>
                     </a>
                     <p class="card-text">
-                        {{this.description}}
+                        {{this.description}}<br>
+                        {{this.price}}
                     </p>
                     <a href="#" class="btn btn-primary">Buy now</a>
                 </div>

@@ -8,6 +8,7 @@ const Member = new Schema({
     description: { type: String, maxLength: 500 },
     image: { type: String, default: '' },
     videoid: { type: String, require: true, },
+    price: { type: String, require: true },
     slug: { type: String, slug: 'name' }
 }, {
     timestamps: true

@@ -1,0 +1,65 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Time created</th>
+            <th style="text-align: center;" scope="col">Update</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each member}}
+        <tr>
+            <th scope="row">{{sum @index 1}}</th>
+            <td><a href="/members/{{this.slug}}" class="slug_hover__text">{{this.name}} </a></td>
+            <td>{{this.price}}</td>
+            <td>{{this.createdAt}}</td>
+            <td class="text_center"><a href="/members/{{this._id}}/edit" class="btn btn-outline-info"
+                    style="margin-right: 14px;">Edit</a>
+                <a href="" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete_member"
+                    data-bs-id="{{this._id}}">Delete</a>
+            </td>
+            {{!-- <td></td> --}}
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{!-- Confirm delete --}}
+<div id="delete_member" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Member</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure to delete this user ?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btnDeleteMember" type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- delete form --}}
+<form method="POST" name="hidden-delete-form">
+</form>
+
+<script>
+    let deleteForm = document.forms['hidden-delete-form'];
+    let memberId;
+    const btnDeleteMember = document.getElementById('btnDeleteMember');
+    const delete_member = document.getElementById('delete_member');
+    delete_member.addEventListener('show.bs.modal', (event) => {
+        let button = event.relatedTarget;
+        memberId = button.getAttribute('data-bs-id');
+    });
+    btnDeleteMember.onclick = () => {
+        deleteForm.action = '/members/' + memberId + '?_method=DELETE';
+        deleteForm.submit();
+    }
+</script>

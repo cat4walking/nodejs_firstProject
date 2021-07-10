@@ -1,0 +1,25 @@
+<div class="mt-4">
+    <h3>
+        Edit Infomation Members
+    </h3>
+    <form class="mt-5" method="POST" action="/members/{{member._id}}?_method=PUT">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" value="{{member.name}}" id="name" name="name">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description">
+                {{member.description}}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="string" class="form-control" value="{{member.price}}" id="price" name="price">
+        </div>
+        <div class="mb-3">
+            <label for="videoid" class="form-label">VideoID</label>
+            <input type="text" class="form-control" value="{{member.videoid}}" id="videoid" name="videoid">
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>

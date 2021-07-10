@@ -7,7 +7,14 @@ a:hover{
     font-size: 2rem;
 }
 .card_space__top{
-    margin-top: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.card_space__top:hover{
+    transform: translateY(-6.5px);
+    transition: .8s ease;
+}
+.container_img:hover{
+    opacity: 0.7;
 }
 .container_img{
     max-height: 214px;
@@ -35,5 +42,32 @@ a:hover{
     filter: grayscale(100%);
 }
 .text_show__name{
+    color: $color_dark;
+}
+.footer_flex{
+    justify-content: space-between;
+}
+
+
+.nav_item__hover{
+    cursor: pointer;
+}
+
+.dropdown:hover .dropdown-menu{
+    display: block;
+}
+
+.dropdown_maker::before{
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 100px;
+    color: black;
+    top: 100%;
+    left: 0;
+}
+
+.slug_hover__text{
+    text-decoration: none;
     color: $color_dark;
 }

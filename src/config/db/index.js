@@ -4,6 +4,7 @@ async function connect() {
         await mongoose.connect('mongodb://127.0.0.1:27017/fit_levels_dev', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
+            useCreateIndex: true,
         });
         console.log("connect success !!")
     } catch (error) {
