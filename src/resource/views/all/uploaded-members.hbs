@@ -1,30 +1,69 @@
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Time created</th>
-            <th style="text-align: center;" scope="col">Update</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each member}}
-        <tr>
-            <th scope="row">{{sum @index 1}}</th>
-            <td><a href="/members/{{this.slug}}" class="slug_hover__text">{{this.name}} </a></td>
-            <td>{{this.price}}</td>
-            <td>{{this.createdAt}}</td>
-            <td class="text_center"><a href="/members/{{this._id}}/edit" class="btn btn-outline-info"
-                    style="margin-right: 14px;">Edit</a>
-                <a href="" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete_member"
-                    data-bs-id="{{this._id}}">Delete</a>
-            </td>
-            {{!-- <td></td> --}}
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+<form name="container_form" method="POST" action="/members/form-action">
+    <div class="heading_upload mt-3">
+        <h5 class="fs-4">Posts</h5>
+        <a href="/all/trash/members" class="btn btn-secondary position-relative">
+            <i class="fas fa-trash"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
+                {{deletedCount}}
+            </span>
+        </a>
+    </div>
+    <div class="mt-1 d-flex align-items-center">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="select-all">
+            <label class="form-check-label" for="select-all">
+                Select all
+            </label>
+        </div>
+        <select class="form-select form-control-sm form_control__weight" aria-label="Default select example"
+            name="action" required>
+            <option value="" selected>-- Choose action</option>
+            <option value="delete">Delete</option>
+        </select>
+        <button class="btn btn-info btn-sm btn_action__submit disabled">Action</button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" colspan="2">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Time created</th>
+                <th style="text-align: center;" scope="col">Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each member}}
+            <tr>
+                <td>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="memberIds[]" value="{{this._id}}">
+                    </div>
+                </td>
+                <th scope="row">{{sum @index 1}}</th>
+                <td><a href="/members/{{this.slug}}" class="slug_hover__text">{{this.name}} </a></td>
+                <td>{{this.price}}</td>
+                <td>{{this.createdAt}}</td>
+                <td class="text_center"><a href="/members/{{this._id}}/edit" class="btn btn-outline-info"
+                        style="margin-right: 14px;">Edit</a>
+                    <a href="" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete_member"
+                        data-bs-id="{{this._id}}">Delete</a>
+                </td>
+                {{!-- <td></td> --}}
+            </tr>
+            {{else}}
+            <tr>
+                <td colspan="6" class="text-center">
+                    <div class="alert alert-primary" role="alert">
+                        No posts over here
+                        <a href="/members/create" class="btn btn-light" style="margin-left: 10px;">Create posts</a>
+                    </div>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</form>
 
 {{!-- Confirm delete --}}
 <div id="delete_member" class="modal" tabindex="-1">
@@ -54,6 +93,8 @@
     let memberId;
     const btnDeleteMember = document.getElementById('btnDeleteMember');
     const delete_member = document.getElementById('delete_member');
+    const containerForm = document.forms['container_form'];
+
     delete_member.addEventListener('show.bs.modal', (event) => {
         let button = event.relatedTarget;
         memberId = button.getAttribute('data-bs-id');
@@ -62,4 +103,36 @@
         deleteForm.action = '/members/' + memberId + '?_method=DELETE';
         deleteForm.submit();
     }
+    document.addEventListener('DOMContentLoaded', () => {
+        const selectAll = $('#select-all');
+        const selectInnputFiled = $('input[name="memberIds[]"]');
+        const btnActionSubmit = $('.btn_action__submit');
+        selectAll.change(() => {
+            let isCheckedAll = $(selectAll).is(':checked');
+            selectInnputFiled.prop('checked', isCheckedAll);
+            renderSubmitCheckAll();
+        })
+        selectInnputFiled.change(() => {
+            let checkCheckedAll = selectInnputFiled.length === $('input[name="memberIds[]"]:checked').length;
+            selectAll.prop('checked', checkCheckedAll);
+            renderSubmitCheckAll();
+        });
+
+        btnActionSubmit.on('submit', (event) => {
+            let isSubmitable = !$(this).hasClass('disabled');
+            if (!isSubmitable) {
+                event.preventDefault();
+            }
+        })
+
+        renderSubmitCheckAll = () => {
+            let checkedCounting = $('input[name="memberIds[]"]:checked').length;
+            if (checkedCounting) {
+                btnActionSubmit.removeClass('disabled');
+            } else {
+                btnActionSubmit.addClass('disabled');
+            }
+        }
+
+    });
 </script>

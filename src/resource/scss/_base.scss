@@ -2,6 +2,11 @@
 html{
     font-size: 75%;
 }
+// form select
+.form-select:focus{
+    box-shadow: none;
+}
+//
 .selector-for-some-widget {
     box-sizing: content-box;
   }

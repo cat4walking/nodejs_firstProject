@@ -1,0 +1,96 @@
+<div class="heading_trash mt-3">
+    <h5 class="fs-4">Deleted posts</h5>
+    <a href="/all/uploaded/members" class="heading_trash__return" data-bs-toggle="tooltip" data-bs-placement="bottom"
+        title="List posts">
+        <span class="heading_trash__return-text">
+            Back to lists
+        </span>
+        <i class="fas fa-stream heading_trash__return-icon"></i>
+    </a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Time deleted</th>
+            <th style="text-align: center;" scope="col">Update</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each member}}
+        <tr>
+            <th scope="row">{{sum @index 1}}</th>
+            <td>{{this.name}}</td>
+            <td>{{this.price}}</td>
+            <td>{{this.deletedAt}}</td>
+            <td class="text_center"><a href="" class="btn btn-outline-info btn_restore" style="margin-right: 14px;"
+                    data-bs-id="{{this._id}}">Restore</a>
+                <a href="" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete_member"
+                    data-bs-id="{{this._id}}">Perma delete</a>
+            </td>
+            {{!-- <td></td> --}}
+        </tr>
+        {{else}}
+        <tr>
+            <td colspan="5" class="text-center">
+                <div class="alert alert-info" role="alert">
+                    Empty
+                </div>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{!-- Confirm delete --}}
+<div id="delete_member" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Member</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure to delete this user ?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btnDeleteMember" type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- form action--}}
+<form method="POST" name="hidden-delete-form"></form>
+<form method="POST" name="hidden-restore-form"></form>
+<script>
+    const deleteForm = document.forms['hidden-delete-form'];
+    const restoreForm = document.forms['hidden-restore-form'];
+    let memberId;
+    const btnDeleteMember = document.getElementById('btnDeleteMember');
+    const delete_member = document.getElementById('delete_member');
+    const restoreAction = document.getElementsByClassName('btn_restore');
+    //loop for restore by id
+    // start
+    for (let i = 0; i < restoreAction.length; i++) {
+        restoreAction[i].addEventListener('click', (click) => {
+            click.preventDefault();
+            let btnAction = click.target;
+            let getId = btnAction.getAttribute('data-bs-id');
+            restoreForm.action = '/members/' + getId + '/restore?_method=PATCH';
+            restoreForm.submit();
+        })
+    }
+    // end
+    delete_member.addEventListener('show.bs.modal', (event) => {
+        let button = event.relatedTarget;
+        memberId = button.getAttribute('data-bs-id');
+    });
+    btnDeleteMember.onclick = () => {
+        deleteForm.action = '/members/' + memberId + '/delete?_method=DELETE';
+        deleteForm.submit();
+    }
+</script>

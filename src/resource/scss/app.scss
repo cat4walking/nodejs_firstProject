@@ -48,11 +48,6 @@ a:hover{
     justify-content: space-between;
 }
 
-
-.nav_item__hover{
-    cursor: pointer;
-}
-
 .dropdown:hover .dropdown-menu{
     display: block;
 }
@@ -70,4 +65,43 @@ a:hover{
 .slug_hover__text{
     text-decoration: none;
     color: $color_dark;
+}
+// flex box
+@mixin flexBox($justify) {
+    display: flex;
+    align-items: center;
+    justify-content: $justify;
+}
+.heading_upload{
+    @include flexBox(space-between);
+    &__trash{
+    font-size: 1.4rem;
+    color: $background_color;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
+    &:hover{
+        transform: scale(1.5);
+    }
+    }
+}
+.heading_trash{
+    @include flexBox(space-between);
+    &__return{
+        text-decoration: none;
+        color: $background_color;
+        &-icon{
+            font-size: 1.1rem;
+            transition: cubic-bezier(0.86, 0, 0.07, 1) 0.3s;
+        }
+        &:hover .heading_trash__return-icon{
+            transform: scale(1.2);
+        }
+    }
+    &-text{
+        font-size: 0.8rem;
+        padding-right: 8px;
+    }
+}
+.form_control__weight{
+    max-width: 200px;
+    margin: 0 14px 0 30px;
 }

@@ -41,11 +41,41 @@ class MemberController {
     }
     // [DELETE]] /members/:id
     destroy(req, res, next) {
+        Member.delete({ _id: req.params.id })
+            .then(() => {
+                res.redirect('back')
+            })
+            .catch(next);
+    }
+    delete(req, res, next) {
         Member.deleteOne({ _id: req.params.id })
             .then(() => {
                 res.redirect('back')
             })
             .catch(next);
+    }
+    // [PATCH] /:id/restore
+    restore(req, res, next) {
+        Member.restore({ _id: req.params.id })
+            .then(() => {
+                res.redirect('back')
+            })
+            .catch(next);
+    }
+    formAction(req, res, next) {
+        switch (req.body.action) {
+            case 'delete':
+                Member.delete({ _id: { $in: req.body.memberIds } })
+                    .then(() => {
+                        res.redirect('back')
+                    })
+                    .catch(next);
+                break;
+            default:
+                res.json({
+                    message: 'Action is invalid!!!'
+                });
+        }
     }
 }
 module.exports = new MemberController();
