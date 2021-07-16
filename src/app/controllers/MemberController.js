@@ -13,14 +13,13 @@ class MemberController {
     // post action
     successfully(req, res, next) {
         const readImage = req.body;
-        readImage.image = `https://i.ytimg.com/vi/${readImage.videoid}/maxresdefault.jpg`;
+        readImage.image = `https://img.youtube.com/vi/${readImage.videoid}/hqdefault.jpg`;
         const member = new Member(readImage);
         member.save()
             .then(() => {
                 res.redirect('/')
             })
             .catch(error => {
-
             });
     }
     // edit
@@ -47,13 +46,6 @@ class MemberController {
             })
             .catch(next);
     }
-    delete(req, res, next) {
-        Member.deleteOne({ _id: req.params.id })
-            .then(() => {
-                res.redirect('back')
-            })
-            .catch(next);
-    }
     // [PATCH] /:id/restore
     restore(req, res, next) {
         Member.restore({ _id: req.params.id })
@@ -66,6 +58,28 @@ class MemberController {
         switch (req.body.action) {
             case 'delete':
                 Member.delete({ _id: { $in: req.body.memberIds } })
+                    .then(() => {
+                        res.redirect('back')
+                    })
+                    .catch(next);
+                break;
+            default:
+                res.json({
+                    message: 'Action is invalid!!!'
+                });
+        }
+    }
+    actionFinally(req, res, next) {
+        switch (req.body.action) {
+            case 'deleteMany':
+                Member.deleteMany({ _id: { $in: req.body.memberIds } })
+                    .then(() => {
+                        res.redirect('back')
+                    })
+                    .catch(next);
+                break;
+            case 'restore':
+                Member.restore({ _id: { $in: req.body.memberIds } })
                     .then(() => {
                         res.redirect('back')
                     })

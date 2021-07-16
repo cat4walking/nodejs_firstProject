@@ -1,48 +1,71 @@
-<div class="heading_trash mt-3">
-    <h5 class="fs-4">Deleted posts</h5>
-    <a href="/all/uploaded/members" class="heading_trash__return" data-bs-toggle="tooltip" data-bs-placement="bottom"
-        title="List posts">
-        <span class="heading_trash__return-text">
-            Back to lists
-        </span>
-        <i class="fas fa-stream heading_trash__return-icon"></i>
-    </a>
-</div>
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Time deleted</th>
-            <th style="text-align: center;" scope="col">Update</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each member}}
-        <tr>
-            <th scope="row">{{sum @index 1}}</th>
-            <td>{{this.name}}</td>
-            <td>{{this.price}}</td>
-            <td>{{this.deletedAt}}</td>
-            <td class="text_center"><a href="" class="btn btn-outline-info btn_restore" style="margin-right: 14px;"
-                    data-bs-id="{{this._id}}">Restore</a>
-                <a href="" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete_member"
-                    data-bs-id="{{this._id}}">Perma delete</a>
-            </td>
-            {{!-- <td></td> --}}
-        </tr>
-        {{else}}
-        <tr>
-            <td colspan="5" class="text-center">
-                <div class="alert alert-info" role="alert">
-                    Empty
-                </div>
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+<form method="POST" action="/members/action-finally">
+    <div class="heading_trash mt-3">
+        <h5 class="fs-4">Deleted posts</h5>
+        <a href="/all/uploaded/members" class="heading_trash__return" data-bs-toggle="tooltip"
+            data-bs-placement="bottom" title="List posts">
+            <span class="heading_trash__return-text">
+                Back to lists
+            </span>
+            <i class="fas fa-stream heading_trash__return-icon"></i>
+        </a>
+    </div>
+    <div class="mt-1 d-flex align-items-center">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="select-all">
+            <label class="form-check-label" for="select-all">
+                Select all
+            </label>
+        </div>
+        <select class="form-select form-control-sm form_control__weight" aria-label="Default select example"
+            name="action" required>
+            <option value="" selected>-- Choose action</option>
+            <option value="restore">Restore</option>
+            <option value="deleteMany">Delete</option>
+        </select>
+        <button class="btn btn-info btn-sm btn_action__submit disabled">Action</button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" colspan="1">#</th>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Time deleted</th>
+                <th style="text-align: center;" scope="col">Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each member}}
+            <tr>
+                <td>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="memberIds[]" value="{{this._id}}">
+                    </div>
+                </td>
+                <th scope="row">{{sum @index 1}}</th>
+                <td>{{this.name}}</td>
+                <td>{{this.price}}</td>
+                <td>{{this.deletedAt}}</td>
+                <td class="text_center"><a href="" class="btn btn-outline-info btn_restore" style="margin-right: 14px;"
+                        data-bs-id="{{this._id}}">Restore</a>
+                    <a href="" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete_member"
+                        data-bs-id="{{this._id}}">Perma delete</a>
+                </td>
+                {{!-- <td></td> --}}
+            </tr>
+            {{else}}
+            <tr>
+                <td colspan="6" class="text-center">
+                    <div class="alert alert-info" role="alert">
+                        Empty
+                    </div>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</form>
 
 {{!-- Confirm delete --}}
 <div id="delete_member" class="modal" tabindex="-1">
@@ -93,4 +116,35 @@
         deleteForm.action = '/members/' + memberId + '/delete?_method=DELETE';
         deleteForm.submit();
     }
+    document.addEventListener('DOMContentLoaded', () => {
+        const selectAll = $('#select-all');
+        const selectInnputFiled = $('input[name="memberIds[]"]');
+        const btnActionTrash = $('.btn_action__submit');
+        selectAll.change(() => {
+            let isCheckedAll = $(selectAll).is(':checked');
+            selectInnputFiled.prop('checked', isCheckedAll);
+            btnActionOnTrash();
+        });
+        selectInnputFiled.change(() => {
+            let checkedAll = selectInnputFiled.length === $('input[name="memberIds[]"]:checked').length;
+            selectAll.prop('checked', checkedAll);
+            btnActionOnTrash();
+        });
+
+        btnActionTrash.on('submit', (event) => {
+            let isSubmitable = !$(this).hasClass('disabled');
+            if (!isSubmitable) {
+                event.preventDefault;
+            }
+        });
+
+        btnActionOnTrash = () => {
+            let checkingCounting = $('input[name="memberIds[]"]:checked');
+            if (checkingCounting) {
+                btnActionTrash.removeClass('disabled');
+            } else {
+                btnActionTrash.addClass('disabled');
+            }
+        }
+    });
 </script>
