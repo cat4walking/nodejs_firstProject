@@ -19,8 +19,7 @@ class MemberController {
             .then(() => {
                 res.redirect('/')
             })
-            .catch(error => {
-            });
+            .catch(next);
     }
     // edit
     edit(req, res, next) {

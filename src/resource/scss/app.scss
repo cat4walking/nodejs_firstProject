@@ -103,5 +103,11 @@ a:hover{
 }
 .form_control__weight{
     max-width: 200px;
-    margin: 0 14px 0 30px;
+    margin-right: 14px;
+}
+
+@media screen and (max-width: 600px) {
+    .hideRaw {
+        display: none;
+    }
 }
