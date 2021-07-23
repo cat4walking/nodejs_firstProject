@@ -2,7 +2,7 @@ const Member = require('../models/Members');
 class AllController {
     // [GET] / all/uploaded/members
     uploadedMembers(req, res, next) {
-        Promise.all([Member.find({}).lean(), Member.countDocumentsDeleted().lean()])
+        Promise.all([Member.find({}).lean().sortable(req), Member.countDocumentsDeleted().lean()])
             .then(([member, deletedCount]) => {
                 res.render('all/uploaded-members', { deletedCount, member });
             })

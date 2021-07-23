@@ -5,6 +5,7 @@ const memberController = require('../app/controllers/MemberController');
 router.get('/create', memberController.create);
 router.get('/:slug', memberController.show);
 router.post('/action-finally', memberController.actionFinally);
+router.delete('/:id/deleteOne', memberController.permaDelete);
 router.post('/form-action', memberController.formAction);
 router.get('/:id/edit', memberController.edit);
 router.put('/:id', memberController.update);

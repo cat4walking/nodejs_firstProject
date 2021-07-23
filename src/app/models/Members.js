@@ -4,7 +4,7 @@ const slug = require('mongoose-slug-generator');
 const mongooseDelete = require('mongoose-delete');
 
 
-const Member = new Schema({
+const MemberSchema = new Schema({
     name: { type: String, require: true, },
     description: { type: String, maxLength: 500 },
     image: { type: String, default: '' },
@@ -15,7 +15,21 @@ const Member = new Schema({
     timestamps: true
 });
 
+// Custom query helper
+MemberSchema.query.sortable = function (req) {
+    if (req.query.hasOwnProperty('_sort')) {
+        const isValidType = ['asc', 'desc'].includes(req.query.type);
+        console.log(isValidType);
+        return this.sort({
+            [req.query.column]: isValidType ? req.query.type : 'desc',
+        });
+    }
+    return this;
+
+};
+
+
 // add plugins
 mongoose.plugin(slug);
-Member.plugin(mongooseDelete, { deletedAt: true, overrideMethods: 'all' }); // plugin soft delete
-module.exports = mongoose.model('Member', Member);
+MemberSchema.plugin(mongooseDelete, { deletedAt: true, overrideMethods: 'all' }); // plugin soft delete
+module.exports = mongoose.model('Member', MemberSchema);

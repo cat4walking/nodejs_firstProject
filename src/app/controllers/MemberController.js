@@ -71,7 +71,7 @@ class MemberController {
     }
     actionFinally(req, res, next) {
         switch (req.body.action) {
-            case 'deleteMany':
+            case 'delete':
                 Member.deleteMany({ _id: { $in: req.body.memberIds } })
                     .then(() => {
                         res.redirect('back')
@@ -90,6 +90,13 @@ class MemberController {
                     message: 'Action is invalid!!!'
                 });
         }
+    }
+    permaDelete(req, res, next) {
+        Member.deleteOne({ _id: req.params.id })
+            .then(() => {
+                res.redirect('back')
+            })
+            .catch(next);
     }
 }
 module.exports = new MemberController();

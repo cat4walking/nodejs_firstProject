@@ -4,6 +4,8 @@ const morgan = require('morgan');
 const app = express();
 const methodOverride = require('method-override');
 const handlebars = require('express-handlebars');
+// sortMiddleware
+const SortMiddleware = require('./app/middlewares/SortMiddleware')
 // Using Node.js `require()`
 const { Console } = require('console');
 const route = require('./routes');
@@ -11,6 +13,7 @@ const port = 3000;
 const db = require('./config/db');
 db.connect();
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(SortMiddleware);
 app.use(morgan('combined'));
 app.use(
     express.urlencoded({
@@ -23,10 +26,7 @@ app.engine(
     'hbs',
     handlebars({
         extname: '.hbs',
-        helpers: {
-            sum: (a, b) =>
-                a + b
-        }
+        helpers: require('./app/helper/handlebars'),
     }),
 );
 app.set('view engine', 'hbs');

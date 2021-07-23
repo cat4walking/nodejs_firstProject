@@ -26,9 +26,18 @@
         <thead>
             <tr>
                 <th scope="col" colspan="2">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Price</th>
-                <th scope="col">Time created</th>
+                <th scope="col">
+                    Name
+                    {{{sortable 'name' _sort}}}
+                </th>
+                <th scope="col">
+                    Price
+                    {{{sortable 'price' _sort}}}
+                </th>
+                <th scope="col">
+                    Time created
+                    {{{sortable 'createdAt' _sort}}}
+                </th>
                 <th style="text-align: center;" scope="col">Update</th>
             </tr>
         </thead>
