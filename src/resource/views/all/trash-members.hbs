@@ -10,12 +10,6 @@
         </a>
     </div>
     <div class="mt-1 d-flex align-items-center">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="select-all">
-            <label class="form-check-label" for="select-all">
-                Select all
-            </label>
-        </div>
         <select class="form-select form-control-sm form_control__weight" aria-label="Default select example"
             name="action" required>
             <option value="" selected>-- Choose action</option>
@@ -27,11 +21,21 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col" colspan="1">#</th>
-                <th scope="col">#</th>
+                <th scope="col">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="select-all">
+                        <label class="form-check-label" for="select-all">
+                            Select all
+                        </label>
+                    </div>
+                </th>
+                <th scope="col">
+                    ID
+                    {{{sortable '_id' _sort}}}
+                </th>
                 <th scope="col">Name</th>
                 <th scope="col">Price</th>
-                <th scope="col">Time deleted</th>
+                <th class="hideRaw" scope="col">Time deleted</th>
                 <th style="text-align: center;" scope="col">Update</th>
             </tr>
         </thead>
@@ -43,10 +47,10 @@
                         <input class="form-check-input" type="checkbox" name="memberIds[]" value="{{this._id}}">
                     </div>
                 </td>
-                <th scope="row">{{this._id}}</th scope="row">
+                <th>{{this._id}}</th>
                 <td>{{this.name}}</td>
                 <td>{{this.price}}</td>
-                <td>{{this.deletedAt}}</td>
+                <td class="hideRaw">{{this.deletedAt}}</td>
                 <td class="text_center"><a href="" class="btn btn-outline-info btn_restore" style="margin-right: 14px;"
                         data-bs-id="{{this._id}}">Restore</a>
                     <a href="" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete_member"

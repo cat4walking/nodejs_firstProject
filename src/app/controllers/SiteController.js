@@ -2,9 +2,7 @@ const Member = require('../models/Members');
 class SiteController {
     // [GET] /
     index(req, res, next) {
-        Member.find({}).lean()
-            .then(member => res.render('home', { member }))
-            .catch(next);
+        res.render('home');
     }
     search(req, res) {
         res.render('search');
