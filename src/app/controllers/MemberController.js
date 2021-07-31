@@ -17,7 +17,7 @@ class MemberController {
         const member = new Member(readImage);
         member.save()
             .then(() => {
-                res.redirect('/')
+                res.redirect('/listmembers/')
             })
             .catch(next);
     }

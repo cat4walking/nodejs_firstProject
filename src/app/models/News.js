@@ -6,9 +6,10 @@ const mongooseDelete = require('mongoose-delete');
 
 const NewsSchema = new Schema(
     {
-        _id: { type: Number },
-        title: { type: String, require: true },
+        title: { type: String, },
         content: { type: String },
+        image: { type: String },
+        slug: { type: String, slug: 'title' },
     },
     {
         timestamps: true,

@@ -42,3 +42,14 @@ a:hover {
 .nav-link{
     padding: 0 6px 0 6px;
 }
+
+// custom silde
+.owl-theme{
+ & .owl-nav{
+    display:none;
+    }
+}
+.owl-dots{
+    display:none;
+}
+    

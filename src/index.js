@@ -12,7 +12,11 @@ const route = require('./routes');
 const port = 3000;
 const db = require('./config/db');
 db.connect();
-app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'hbs');
+app.use(express.static(path.join(__dirname, 'public',)));
+//app.set('public', path.join(__dirname, 'src', 'public'));
+app.set('views', path.join(__dirname, 'resource', 'views',));
+//app.use(express.static(path.join(__dirname, 'src')));
 app.use(SortMiddleware);
 app.use(morgan('combined'));
 app.use(
@@ -29,8 +33,7 @@ app.engine(
         helpers: require('./app/helper/handlebars'),
     }),
 );
-app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'resource', 'views'));
+
 
 // routes init
 

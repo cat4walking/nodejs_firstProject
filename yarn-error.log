@@ -1,0 +1,74 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\ADMIN\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add owl.carousel jquery
+
+PATH: 
+  C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;E:\github-settup\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;E:\python\Scripts\;E:\python\;C:\Users\ADMIN\AppData\Local\Microsoft\WindowsApps;C:\Users\ADMIN\AppData\Local\GitHubDesktop\bin;C:\Users\ADMIN\AppData\Local\Programs\Microsoft VS Code\bin;E:\Visual_code\Setting\Microsoft VS Code\bin;C:\Users\ADMIN\AppData\Roaming\npm
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  16.1.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EPERM: operation not permitted, unlink 'E:\Web-Project\nodejs\node_modules\node-sass\vendor\win32-x64-93\binding.node'
+
+npm manifest: 
+  {
+    "name": "nodejs",
+    "version": "1.0.0",
+    "description": "",
+    "main": "src/index.js",
+    "scripts": {
+      "beauti": "lint-staged",
+      "start": "nodemon --inspect src/index.js",
+      "watch": "node-sass -w src/resource/scss/ --output src/public/css/",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/cat4walking/nodejs_firstProject.git"
+    },
+    "keywords": [
+      "nodejs",
+      "cat4walking",
+      "firstProject"
+    ],
+    "author": "cat4walking",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/cat4walking/nodejs_firstProject/issues"
+    },
+    "homepage": "https://github.com/cat4walking/nodejs_firstProject#readme",
+    "lint-staged": {
+      "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --tab-width 4 --write"
+    },
+    "dependencies": {
+      "@fortawesome/fontawesome-free": "^5.15.3",
+      "express": "^4.17.1",
+      "express-handlebars": "^5.3.2",
+      "method-override": "^3.0.0",
+      "mongoose": "^5.13.0",
+      "mongoose-delete": "^0.5.3",
+      "mongoose-sequence": "^5.3.1",
+      "mongoose-slug-generator": "^1.0.4",
+      "multer": "^1.4.2",
+      "node-sass": "^6.0.0"
+    },
+    "devDependencies": {
+      "husky": "^6.0.0",
+      "lint-staged": "^11.0.0",
+      "morgan": "^1.10.0",
+      "nodemon": "^2.0.7",
+      "prettier": "^2.3.2"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

@@ -109,14 +109,33 @@ a:hover{
 // css news
 
 .layout_news__img{
-    object-fit: cover;
-    object-position: center;
+    max-height: 200px;
     width: 100%;
-    height: 100%;
+    object-fit: fill;
 }
+
+// .background_container{
+//     background-image: url(/img/container_profile__img.jpg);
+//     background-attachment: fixed;
+//     background-repeat: no-repeat;
+// }
 
 @media screen and (max-width: 600px) {
     .hideRaw {
         display: none;
+    }
+}
+
+// for iphone
+@media screen and (max-width:414px) {
+    .layout_news__img{
+        max-height: 250px;
+        max-width: 100%;
+    }
+}
+@media screen and (max-width: 540px) {
+    .layout_news__img{
+        height: 250px;
+        max-width: 100%;
     }
 }
