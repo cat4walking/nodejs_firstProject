@@ -1,7 +1,7 @@
-<form method="POST" action="/members/action-finally">
+<form method="POST" action="/news/action-finally">
     <div class="heading_trash mt-3">
-        <h5 class="fs-4">Deleted posts</h5>
-        <a href="/all/uploaded/members" class="heading_trash__return" data-bs-toggle="tooltip"
+        <h5 class="fs-4">Recycle Bin</h5>
+        <a href="/listnews/uploaded/news" class="heading_trash__return" data-bs-toggle="tooltip"
             data-bs-placement="bottom" title="List posts">
             <span class="heading_trash__return-text">
                 Back to lists
@@ -33,14 +33,14 @@
                     ID
                     {{{sortable '_id' _sort}}}
                 </th>
-                <th scope="col">Name</th>
-                <th scope="col">Price</th>
+                <th scope="col">Title</th>
+                <th scope="col">Images</th>
                 <th class="hideRaw" scope="col">Time deleted</th>
                 <th style="text-align: center;" scope="col">Update</th>
             </tr>
         </thead>
         <tbody>
-            {{#each member}}
+            {{#each news}}
             <tr>
                 <td>
                     <div class="form-check">
@@ -48,8 +48,10 @@
                     </div>
                 </td>
                 <th>{{this._id}}</th>
-                <td>{{this.name}}</td>
-                <td>{{this.price}}</td>
+                <td>{{this.title}}</td>
+                <td>
+                    <img class="img-thumbnail" src="/upload/images/{{this.image}}" />
+                </td>
                 <td class="hideRaw">{{this.deletedAt}}</td>
                 <td class="text_center"><a href="" class="btn btn-outline-info btn_restore" style="margin-right: 14px;"
                         data-bs-id="{{this._id}}">Restore</a>
@@ -107,7 +109,7 @@
             click.preventDefault();
             let btnAction = click.target;
             let getId = btnAction.getAttribute('data-bs-id');
-            restoreForm.action = '/members/' + getId + '/restore?_method=PATCH';
+            restoreForm.action = '/listnews/' + getId + '/restore?_method=PATCH';
             restoreForm.submit();
         })
     }

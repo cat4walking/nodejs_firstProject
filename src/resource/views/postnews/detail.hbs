@@ -1,9 +1,53 @@
 <div class="mt-3">
-    <p>
-        {{news.title}}
-    </p>
-    <p>
-        {{news.content}}
-    </p>
-    <img src="{{news.image}}" class="img-fluid" alt="">
+    <div class="d-flex align-items-start">
+        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
+                type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">View</button>
+            <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
+                type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Edit</button>
+        </div>
+        <div class="tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{news.title}}</h5>
+                        <img src="{{news.image}}" class="card-img-top" alt="this is image">
+                        <p class="card-text">{{{news.content}}}</p>
+                        {{!-- <div id="showContent" class="card-text">
+                            {{news.content}}
+                        </div> --}}
+                        <p class="card-text"><small class="text-muted">Creation time:
+                                {{news.createdAt}}</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                <button type="button" class="btn btn-primary" id="liveToastBtn">Comming Soon</button>
+                <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            {{!-- <img src="..." class="rounded me-2" alt="..."> --}}
+                            <strong class="me-auto">Developing feature</strong>
+                            <small>^-^</small>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                            Have a nice day
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<script>
+    let toastTrigger = document.getElementById('liveToastBtn')
+    let toastLiveExample = document.getElementById('liveToast')
+    if (toastTrigger) {
+        toastTrigger.addEventListener('click', () => {
+            let toast = new bootstrap.Toast(toastLiveExample)
+            toast.show()
+        })
+    }
+
+</script>

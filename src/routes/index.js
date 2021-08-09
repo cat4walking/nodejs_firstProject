@@ -1,4 +1,5 @@
 const newsRouter = require('./news');
+const listRouter = require('./listnews');
 const allRouter = require('./all');
 const siteRouter = require('./site');
 const membersRouter = require('./members');
@@ -8,6 +9,7 @@ const { contact } = require('../app/controllers/ContactController');
 function route(app) {
     app.use('/listmembers', membersListRouter);
     app.use('/news', newsRouter);
+    app.use('/listnews', listRouter);
     app.use('/all', allRouter);
     app.use('/members', membersRouter);
     app.use('/contact', contactRouter);

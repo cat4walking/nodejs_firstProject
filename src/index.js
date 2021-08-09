@@ -33,8 +33,6 @@ app.engine(
         helpers: require('./app/helper/handlebars'),
     }),
 );
-
-
 // routes init
 
 app.listen(port, () => {

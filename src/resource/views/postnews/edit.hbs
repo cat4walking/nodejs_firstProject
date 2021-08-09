@@ -1,0 +1,25 @@
+<div class="mt-4">
+    <h3>
+        Edit Detail News
+    </h3>
+    <form class="mt-5" method="POST" action="/news/{{news._id}}?_method=PUT">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" value="{{news.title}}" id="title" name="title">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Content</label>
+            <textarea class="form-control" id="content" name="content" rows="10">
+                {{news.content}}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="file" name="image" class="form-control" id="image">
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label"></label>
+            <img src="/upload/images/{{news.image}}" class="img_thumnail__list-edit img-thumbnail" alt="this is image">
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>

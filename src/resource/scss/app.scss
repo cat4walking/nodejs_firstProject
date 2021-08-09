@@ -17,7 +17,6 @@ a:hover{
     opacity: 0.7;
 }
 .container_img{
-    max-height: 214px;
     width: 100%;
     object-fit: contain;
 }
@@ -47,11 +46,6 @@ a:hover{
 .footer_flex{
     justify-content: space-between;
 }
-
-.dropdown:hover .dropdown-menu{
-    display: block;
-}
-
 .dropdown_maker::before{
     content: '';
     position: absolute;
@@ -113,6 +107,26 @@ a:hover{
     width: 100%;
     object-fit: fill;
 }
+.layout_slide{
+    &__img{
+        max-height: 300px;
+        width: 100%;
+        object-fit: fill;
+    }
+}
+.img_thumnail__list{
+    max-width: 120px;
+    &-edit{
+        max-width: 200px;
+    }
+}
+.truncate_text{
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
 
 // .background_container{
 //     background-image: url(/img/container_profile__img.jpg);
@@ -138,4 +152,36 @@ a:hover{
         height: 250px;
         max-width: 100%;
     }
+}
+
+@media all and (min-width: 992px) {
+	.dropdown-menu{
+        & li{ 
+            position: relative;
+            }
+    } 
+	.nav-item {
+        & .submenu{ 
+            display: none;
+            position: absolute;
+            right:100%; top: -8px;
+        }
+    }
+	.nav-item {
+        & .submenu-left{ 
+            right:100%; left:auto;
+            }
+    }
+	.dropdown-menu > li:hover{ background-color: #f1f1f1 }
+	.dropdown-menu > li:hover > .submenu{ display: block; }
+}	
+/* ============ desktop view .end// ============ */
+
+/* ============ small devices ============ */
+@media (max-width: 991px) {
+  .dropdown-menu .dropdown-menu{
+    margin-left:0.7rem;
+    margin-right:0.7rem;
+    margin-bottom: .5rem;
+  }
 }

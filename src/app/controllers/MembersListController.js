@@ -4,7 +4,7 @@ class MembersListController {
         Member.find({}).lean()
             .then(member => res.render('listmembers', { member }))
             .catch(next);
-    };
-}
+    }
+};
 
 module.exports = new MembersListController();

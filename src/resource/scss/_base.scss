@@ -1,6 +1,9 @@
 @import 'variables';
 html{
-    font-size: 75%;
+    font-size: 100%;
+}
+a {
+    text-decoration: none;
 }
 // form select
 .form-select:focus{

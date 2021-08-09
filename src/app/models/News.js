@@ -16,7 +16,7 @@ const NewsSchema = new Schema(
     }
 );
 
-NewsSchema.plugin(mongooseDelete, { deletedAt: true, overrideMethods: 'all' }); // plugin soft delete
+NewsSchema.plugin(mongooseDelete, { deletedAt: true, overrideMethods: 'all' }); // plugin soft delete -- dont show filed has deleteAt:true
 mongoose.plugin(slug);
 // NewsSchema.plugin(AutoIncrement);
 module.exports = mongoose.model('News', NewsSchema);
