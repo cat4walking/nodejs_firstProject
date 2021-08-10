@@ -57,17 +57,24 @@ class NewsController {
     };
     // [PUT]
     update(req, res, next) {
-        News.updateOne({ _id: req.params.id }, req.body).lean()
+        News.updateOne({ _id: req.params.id }, {
+            title: req.body.title,
+            content: req.body.content,
+            image: req.file.filename,
+        }).lean()
             .then((news) => {
-                const imgEdit = APP_URL.concat(news.image)
-                news.image = imgEdit;
-                console.log(news)
                 res.redirect('/listnews/uploaded/news')
             })
             .catch(next);
 
     };
-
+    deleteOne(req, res, next) {
+        News.deleteOne({})
+            .then(() => {
+                res.redirect('back')
+            })
+            .catch(next);
+    }
     //form action
     formAction(req, res, next) {
         switch (req.body.action) {

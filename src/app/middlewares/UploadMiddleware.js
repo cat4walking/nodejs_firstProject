@@ -3,11 +3,12 @@ const path = require('path');
 // define storage for the imgaes
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
+        console.log("file", file);
         callback(null, './src/public/upload/images');
     },
     filename: (req, file, callback) => {
-        console.log(file);
-        callback(null, file.originalname);
+        const extention = file.originalname.split(".").pop()
+        callback(null, `${new Date().getTime()}.${extention}`);
     }
 });
 // // upload parameter for multer

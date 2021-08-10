@@ -119,7 +119,7 @@
         memberId = button.getAttribute('data-bs-id');
     });
     btnDeleteMember.onclick = () => {
-        deleteForm.action = '/members/' + memberId + '/deleteOne?_method=DELETE';
+        deleteForm.action = '/news/' + memberId + '/deleteOne?_method=DELETE';
         deleteForm.submit();
     }
     document.addEventListener('DOMContentLoaded', () => {

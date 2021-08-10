@@ -5,6 +5,7 @@ const upload = require('../app/middlewares/UploadMiddleware');
 
 
 router.put('/:id', upload.single('image'), newsController.update);
+router.delete('/:id/deleteOne', newsController.deleteOne);
 router.post('/form-action', newsController.formAction);
 router.post('/action-finally', newsController.actionFinally);
 router.get('/:id/edit', newsController.edit);

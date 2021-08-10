@@ -2,7 +2,7 @@
     <h3>
         Edit Detail News
     </h3>
-    <form class="mt-5" method="POST" action="/news/{{news._id}}?_method=PUT">
+    <form class="mt-5" method="POST" action="/news/{{news._id}}?_method=PUT" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input type="text" class="form-control" value="{{news.title}}" id="title" name="title">
