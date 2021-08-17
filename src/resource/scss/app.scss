@@ -66,6 +66,18 @@ a:hover{
     align-items: center;
     justify-content: $justify;
 }
+// button
+@mixin button($color) {
+    background: $color;
+    color: $color_white;
+    font-size: 1rem;
+    padding: 8px 14px;
+    margin-top: 20px;
+    outline: none;
+    border-radius: 2px;
+    border: none;
+    cursor: pointer;
+}
 .heading_upload{
     @include flexBox(space-between);
     &__trash{
@@ -127,12 +139,121 @@ a:hover{
     -webkit-line-clamp: 3;
 }
 
+// login 
+.container_login{
+    @include flexBox(center);
+    min-height: 100vh;
+    background-color: $mixin_blue;
+    transition: 0.5;
+    &__form{
+        position: relative;
+        width: 800px;
+        height: 500px;
+        margin: 20px;
+        &-blueBg{
+            @include flexBox(center);
+            position: absolute;
+            top: 40px;
+            width: 100%;
+            height: 420px;
+            background-color: rgba(225, 225, 225, 0.2);
+            box-shadow: 0 5px 45px rgba(0, 0, 0, 0.15);
+        }
+        &-formBx{
+            @include flexBox(center);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: $color_white;
+            z-index: 1000;
+            box-shadow:0 5px 45px rgba(0, 0, 0, 0.25);
+            transition: 0.5s ease-in-out ;
+            overflow: hidden;
+            &.active{
+                left: 50% ;   
+            };
+        }
+    }
+    &.active{
+        background: $alert_color;
+    }
+}
+.container_login__form-blueBg .box{
+    @include flexBox(center);
+    position: relative;
+    width: 50%;
+    height: 100%;
+    flex-direction: column;
+    & h2{
+        color: $color_white;
+        font-size: 1.4rem;
+        font-weight: 500;
+        margin-bottom: 10px;
+    };
+    & button{
+        cursor: pointer;
+        padding: 10px 20px;
+        background: $color_white;
+        color: $color_dark;
+        font-size: 1rem;
+        font-weight: 500;
+        border:navajowhite;
+    };
+};
+.container_login__form-formBx .form {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    padding:50%;
+    transition: 0.5s;
+    &_label{
+        display: inline-block;
+        margin-bottom: 20px;
+        font-size: 1.6rem;
+        color: $color_dark;
+        font-weight: 500;
+        min-width: 220px;
+        text-align: center;
+        &__text{
+            font-size: 1rem;
+            min-width: 220px;
+            margin-top: 16px;
+        }
+    }
+    &_input{
+        outline: none;
+        padding: 10px;
+        font-size: 1rem;
+        border-radius: 2px;
+        border: 1px solid $color_dark;
+    }
+    &_button{
+        @include button($mixin_blue);
+        &__register{
+            @include button($alert_color);
+        }
+    }
+    & form{
+        @include flexBox(space-between);
+        flex-direction: column;
+        width: 100%;
 
-// .background_container{
-//     background-image: url(/img/container_profile__img.jpg);
-//     background-attachment: fixed;
-//     background-repeat: no-repeat;
-// }
+    };
+};
+.container_login__form-formBx .signinForm{
+    transition-delay: 0.15s;
+};
+.container_login__form-formBx.active .signinForm{
+    left: -100%;
+};
+.container_login__form-formBx.active .signupForm{
+    left: 0%;
+};
+.container_login__form-formBx .signupForm{
+    left: 100%;
+};
 
 @media screen and (max-width: 600px) {
     .hideRaw {
@@ -184,4 +305,33 @@ a:hover{
     margin-right:0.7rem;
     margin-bottom: .5rem;
   }
+  .container_login__form{
+      max-width: 400px;
+      height: 650px;
+      &-blueBg{
+          top: 0;
+          height: 100%;
+      }
+      &-formBx{
+          width: 100%;
+          height: 500px;
+          top: 0;
+          box-shadow: none;
+      }
+  };
+  .container_login__form-blueBg .box{
+    position: absolute;
+    width: 100%;
+    height: 150px;
+    bottom: 0;
+  };
+  .signin {
+      top: 0;
+  };
+  .container_login__form-formBx.active{
+      left: 0;
+      top: 150px;
+  }  
+  
+
 }

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edu Fitness</title>
+    <link rel="icon" href="/img/logo.jpg">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+
+<body>
+    <div class="container_login">
+        <div class="container_login__form">
+            <div class="container_login__form-blueBg">
+                <div class="box signin">
+                    <h2>Already Have An Account ?</h2>
+                    <button class="signinBtn">
+                        Login
+                    </button>
+                    <a href="/home">
+                        login
+                    </a>
+                </div>
+                <div class="box signup">
+                    <h2>Don't Have An Account ?</h2>
+                    <button class="signupBtn">
+                        Signup
+                    </button>
+                </div>
+            </div>
+            <div class="container_login__form-formBx">
+                <div class="form signinForm">
+                    <form action="">
+                        <label class="form_label" for="username">
+                            Login
+                        </label>
+                        <input class="form_input" type="text" id="username" name="username" placeholder="User Name">
+                        <label class="form_label" for="password">
+                        </label>
+                        <input class="form_input" type="password" id="password" name="password" placeholder="Password">
+                        <button class="form_button" type="submit">
+                            Login
+                        </button>
+                    </form>
+                </div>
+                {{!-- signup --}}
+                <div class="form signupForm">
+                    <form action="">
+                        <h3 class="form_label">
+                            Sign Up
+                        </h3>
+                        <label class="form_label__text" for="username">
+                        </label>
+                        <input class="form_input" type="text" id="username" name="username" placeholder="User Name">
+                        <label class="form_label__text" for="email">
+                        </label>
+                        <input class="form_input" type="email" id="email" name="email"
+                            placeholder="YourEmail@gmail.com">
+                        <label class="form_label__text" for="password">
+                        </label>
+                        <input class="form_input" type="password" id="password" name="password" placeholder="Password">
+                        <label class="form_label__text" for="conPassword">
+
+                        </label>
+                        <input class="form_input" type="password" id="conPassword" name="conPassword"
+                            placeholder="Confirm Password">
+                        <button class="form_button__register" type="submit">
+                            Register
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const signinBtn = document.querySelector('.signinBtn');
+    const signupBtn = document.querySelector('.signupBtn');
+    const formBx = document.querySelector('.container_login__form-formBx');
+    const containerLogin = document.querySelector('.container_login');
+    signupBtn.onclick = (e) => {
+        formBx.classList.add('active');
+        containerLogin.classList.add('active');
+    };
+    signinBtn.onclick = (e) => {
+        formBx.classList.remove('active');
+        containerLogin.classList.remove('active');
+    };
+</script>
+
+</html>

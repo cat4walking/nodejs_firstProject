@@ -1,8 +1,4 @@
 const News = require('../models/News');
-
-const APP_URL = 'http://localhost:3000/upload/images/'
-// Lưu biến này vào env
-
 class NewsController {
     // get / news
     index(req, res, next) {
@@ -18,9 +14,6 @@ class NewsController {
     show(req, res, next) {
         News.findOne({ slug: req.params.slug }).lean()
             .then(news => {
-                const imgUrl = APP_URL.concat(news.image)
-                news.image = imgUrl;
-                console.log(news)
                 res.render('postnews/detail', { news })
             })
             .catch(next)
@@ -29,6 +22,7 @@ class NewsController {
         let news = new News({
             title: req.body.title,
             content: req.body.content,
+            author: req.body.author,
         });
         if (req.file) {
             news.image = req.file.filename;
@@ -41,6 +35,7 @@ class NewsController {
                 res.redirect('/news/')
             })
             .catch(next);
+        console.log(news);
     };
     destroy(req, res, next) {
         News.delete({ _id: req.params.id })

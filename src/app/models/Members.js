@@ -7,10 +7,11 @@ const AutoIncrement = require('mongoose-sequence')(mongoose);
 const MemberSchema = new Schema({
     _id: { type: Number },
     name: { type: String, require: true, },
-    description: { type: String, maxLength: 500 },
+    description: { type: String },
     image: { type: String, default: '' },
     videoid: { type: String, require: true, },
     price: { type: String, require: true },
+    author: { type: String, },
     slug: { type: String, slug: 'name' }
 }, {
     _id: false,
@@ -26,7 +27,6 @@ MemberSchema.query.sortable = function (req) {
         });
     }
     return this;
-
 };
 
 

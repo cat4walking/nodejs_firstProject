@@ -21,6 +21,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet"
         type="text/css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="/css/app.css">
 </head>
 
@@ -47,6 +48,10 @@
 {{!-- froala --}}
 <script type="text/javascript"
     src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
+</script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="/animation/index.js"></script>
+</script>
 <script>
     $(document).ready(function () {
         $('.owl-carousel').owlCarousel({
@@ -73,6 +78,12 @@
 </script>
 <script>
     new FroalaEditor('textarea');
+</script>
+<script>
+    AOS.init({
+        offset: 150,
+        duration: 700,
+    });
 </script>
 
 </html>

@@ -11,11 +11,9 @@
                 <div class="card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">{{news.title}}</h5>
-                        <img src="{{news.image}}" class="card-img-top" alt="this is image">
+                        <img src="/upload/images/{{news.image}}" class="card-img-top" alt="this is image">
                         <p class="card-text">{{{news.content}}}</p>
-                        {{!-- <div id="showContent" class="card-text">
-                            {{news.content}}
-                        </div> --}}
+                        <p class="card-text">{{news.author}}</p>
                         <p class="card-text"><small class="text-muted">Creation time:
                                 {{news.createdAt}}</small></p>
                     </div>

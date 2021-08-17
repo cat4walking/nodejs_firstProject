@@ -1,6 +1,12 @@
 @import 'variables';
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 html{
     font-size: 100%;
+    box-sizing: inherit;
 }
 a {
     text-decoration: none;

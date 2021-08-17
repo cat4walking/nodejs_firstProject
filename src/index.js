@@ -14,9 +14,7 @@ const db = require('./config/db');
 db.connect();
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public',)));
-//app.set('public', path.join(__dirname, 'src', 'public'));
 app.set('views', path.join(__dirname, 'resource', 'views',));
-//app.use(express.static(path.join(__dirname, 'src')));
 app.use(SortMiddleware);
 app.use(morgan('combined'));
 app.use(
