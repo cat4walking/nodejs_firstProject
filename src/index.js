@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const app = express();
 const methodOverride = require('method-override');
 const handlebars = require('express-handlebars');
+const flash = require('connect-flash')
 // sortMiddleware
 const SortMiddleware = require('./app/middlewares/SortMiddleware')
 // Using Node.js `require()`

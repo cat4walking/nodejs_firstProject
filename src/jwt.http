@@ -1,0 +1,11 @@
+GET http://localhost:3000/listmembers
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTFkNGI2ODYxYmNhZTM4MThiYmNmMWQiLCJpYXQiOjE2Mjk2NTI4NDIsImV4cCI6MTYyOTY1Mjg3Mn0.s136R6ZUcyfpbFqYl1jjKQ0PSEyaidjEWTZP3nzxJFc
+
+###
+
+POST http://localhost:3000/login
+Content-Type: application/json
+{
+    "email" : "nah@gmail.com",
+    "password" : "123456"
+}

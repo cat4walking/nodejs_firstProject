@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 async function connect() {
     try {
-        await mongoose.connect('mongodb://127.0.0.1:27017/fit_levels_dev', {
+        await mongoose.connect('mongodb+srv://cat4walking:cat4walking@edufitness.eh8s7.mongodb.net/test', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true,

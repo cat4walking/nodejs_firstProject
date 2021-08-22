@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const News = require('../models/News');
 const { registerValidation, loginValidation } = require('../helper/validation');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -9,7 +10,10 @@ dotenv.config();
 class loginController {
     async register(req, res, next) {
         const { error } = registerValidation(req.body);
-        if (error) return res.status(400).send(error.details[0].message);
+        if (error) return res.render("home", {
+            layout: 'login.hbs',
+            errors: error.details
+        })
         // checking if the user already in the database
         const emailExist = await User.findOne({ email: req.body.email });
         if (emailExist) return res.status(400).send('Email already exists');
@@ -19,32 +23,46 @@ class loginController {
         const user = new User({
             name: req.body.name,
             email: req.body.email,
-            password: hashPassword
+            password: hashPassword,
         });
         user.save()
             .then(() => {
-                res.send({ user: user._id });
+                res.redirect('back');
             }).catch((err) => {
                 res.status(400).send(err);
             });
     };
     async login(req, res, next) {
         const { error } = loginValidation(req.body);
-        if (error) return res.status(400).send(error.details[0].message);
+        if (error) return res.status(400).render("home", {
+            layout: 'login.hbs',
+            errorlogin: error.details
+        });
         // checking if email exists
         const user = await User.findOne({ email: req.body.email });
-        if (!user) return res.status(400).send('Email is not found');
+        if (!user) return res.status(400).render('home',
+            {
+                layout: 'login.hbs',
+                errorlogin: error
+            }
+        );
         // Password is correct
         const validPassword = await bcrypt.compare(req.body.password, user.password);
-        if (!validPassword) return res.status(400).send('Password is valid');
-        // creat and assign token
-        // const token = jwt.sign({_id: user._id}, process.env.TOKEN_SERCET);
-        const token = jwt.sign({ _id: user._id }, 'bhsawlljycdiabo');
-        res.header('auth-token', token).send(token);
-
+        if (!validPassword) return res.status(400).render('home',
+            {
+                layout: 'login.hbs',
+                errorlogin: error
+            }
+        );
+        // creat and assign token.
+        const token = jwt.sign({ _id: user._id }, 'bhsawlljycdiabo', {
+            expiresIn: '30s'
+        });
+        res.header('authorization', token);
+        res.redirect('home');
     }
     index(req, res, next) {
-        res.render('news', { layout: 'login.hbs' });
+        res.render('home', { layout: 'login.hbs' });
     };
 };
 

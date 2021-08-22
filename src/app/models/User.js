@@ -21,6 +21,9 @@ const UserSchema = new Schema(
             max: 1000,
             min: 4
         },
+        conPassword: {
+            type: String,
+        },
         date: {
             type: Date,
             default: Date.now

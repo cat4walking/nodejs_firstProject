@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const siteController = require('../app/controllers/SiteController');
+const siteController = require('../app/controllers/HomeController');
 const vertify = require('../app/token/vertifyToken');
 
-router.get('/search', siteController.search);
-router.get('/', vertify, siteController.index);
+router.get('/', siteController.index);
 module.exports = router;

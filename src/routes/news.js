@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const newsController = require('../app/controllers/NewsController');
 const upload = require('../app/middlewares/UploadMiddleware');
+const vertify = require('../app/token/vertifyToken');
 
 
 router.put('/:id', upload.single('image'), newsController.update);

@@ -19,6 +19,7 @@ const NewsSchema = new Schema(
     }
 );
 
+
 // Custom query helper
 NewsSchema.query.sortable = function (req) {
     if (req.query.hasOwnProperty('_sort')) {

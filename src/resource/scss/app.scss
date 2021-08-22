@@ -242,6 +242,11 @@ a:hover{
 
     };
 };
+.valid-text {
+    font-size: 0.8rem !important;
+    padding: 0 10px;
+    color: $valid_red;
+}
 .container_login__form-formBx .signinForm{
     transition-delay: 0.15s;
 };
@@ -254,6 +259,9 @@ a:hover{
 .container_login__form-formBx .signupForm{
     left: 100%;
 };
+.toast:not(.show) {
+    display: block;
+}
 
 @media screen and (max-width: 600px) {
     .hideRaw {
