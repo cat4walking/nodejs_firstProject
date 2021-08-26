@@ -1,5 +1,4 @@
 const News = require('../models/News');
-
 class ListNewsController {
     uploadedNews(req, res, next) {
         Promise.all([News.find({}).lean().sortable(req), News.countDocumentsDeleted().lean()])
