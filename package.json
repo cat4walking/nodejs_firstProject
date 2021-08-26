@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
+  "exports": "./index.js",
+  "ext": "js json scss ",
   "scripts": {
     "start": "nodemon index.js",
     "scss": "node-sass -w src/resource/scss/ --output src/public/css/"
