@@ -3,8 +3,8 @@ const News = require('../models/News');
 const { registerValidation, loginValidation } = require('../helper/validation');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const dotenv = require('dotenv');
-dotenv.config();
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, './.env') });
 //validation
 
 class loginController {
@@ -55,7 +55,7 @@ class loginController {
             }
         );
         // creat and assign token.
-        const token = jwt.sign({ _id: user._id }, 'bhsawlljycdiabo', {
+        const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, {
             expiresIn: '30s'
         });
         res.header('authorization', token);
