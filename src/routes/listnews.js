@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const listNewsController = require('../app/controllers/ListNewsController');
-z
+
 
 
 router.patch('/:id/restore', listNewsController.restore);
