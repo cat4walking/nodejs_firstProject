@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const listNewsController = require('/app/controllers/ListNewsController');
+const listNewsController = require('../app/controllers/ListNewsController');
 
 
 
