@@ -34,7 +34,7 @@ app.engine(
 );
 // routes init
 
-app.listen(port, () => {
-    console.log(`http://localhost:${port}`);
+app.listen(process.env.PORT_API, () => {
+    console.log(`http://localhost:${process.env.PORT_API}`);
 });
 route(app);
