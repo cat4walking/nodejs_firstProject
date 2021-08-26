@@ -49,7 +49,5 @@
     "node-sass": "^6.0.0",
     "nodemon": "^2.0.12"
   },
-  "devDependencies": {
-    "prettier": "^2.3.2"
-  }
+  "devDependencies": {}
 }
