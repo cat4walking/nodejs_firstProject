@@ -6,7 +6,7 @@ const methodOverride = require('method-override');
 const handlebars = require('express-handlebars');
 require('dotenv').config({ path: path.resolve(__dirname, './.env') });
 // sortMiddleware
-const SortMiddleware = require('./app/middlewares/SortMiddleware')
+const SortMiddleware = require('./common/middlewares/SortMiddleware')
 // Using Node.js `require()`
 const { Console } = require('console');
 const route = require('./routes');
@@ -29,7 +29,7 @@ app.engine(
     'hbs',
     handlebars({
         extname: '.hbs',
-        helpers: require('./app/helper/handlebars'),
+        helpers: require('./common/helper/handlebars'),
     }),
 );
 // routes init

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const memberController = require('../app/controllers/MemberController');
+const memberController = require('../common/controllers/MemberController');
 
 router.get('/create', memberController.create);
 router.get('/:slug', memberController.show);

@@ -7,7 +7,7 @@ const contactRouter = require('./contact');
 const membersListRouter = require('./membersList');
 // const registerRouter = require('./register');
 const loginRouter = require('./login')
-const { contact } = require('../app/controllers/ContactController');
+const { contact } = require('../common/controllers/ContactController');
 function route(app) {
     app.use('/listmembers', membersListRouter);
     app.use('/news', newsRouter);

@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const siteController = require('../app/controllers/HomeController');
-const vertify = require('../app/token/vertifyToken');
-const get = require('../app/models/News');
+const siteController = require('../common/controllers/HomeController');
+const vertify = require('../common/token/vertifyToken');
+const get = require('../common/models/News');
 
 router.get('/', siteController.index);
 module.exports = router;
