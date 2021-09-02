@@ -1,0 +1,4 @@
+GET http://localhost:3000/home?page=1&limit=4
+
+###
+GET http://localhost:3000/home

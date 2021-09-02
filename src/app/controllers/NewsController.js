@@ -22,6 +22,7 @@ class NewsController {
         let news = new News({
             title: req.body.title,
             content: req.body.content,
+            category: req.body.category,
             author: req.body.author,
         });
         if (req.file) {

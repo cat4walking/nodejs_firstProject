@@ -10,6 +10,7 @@ const NewsSchema = new Schema(
         title: { type: String, },
         content: { type: String },
         image: { type: String },
+        category: { type: String },
         author: { type: String, },
         slug: { type: String, slug: 'title' },
     },

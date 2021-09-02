@@ -10,10 +10,14 @@
             <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                 <div class="card mb-3">
                     <div class="card-body">
-                        <h5 class="card-title">{{news.title}}</h5>
+                        <h4>
+                            Category: <mark>{{news.category}}</mark>
+                        </h4>
+                        <hr>
+                        <h1 class="card-title">{{news.title}}</h1>
                         <img src="/upload/images/{{news.image}}" class="card-img-top" alt="this is image">
                         <p class="card-text">{{{news.content}}}</p>
-                        <p class="card-text">{{news.author}}</p>
+                        <p class="card-text text_gray text_gray__author">Author : {{news.author}}</p>
                         <p class="card-text"><small class="text-muted">Creation time:
                                 {{news.createdAt}}</small></p>
                     </div>

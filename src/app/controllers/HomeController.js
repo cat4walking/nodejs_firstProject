@@ -6,9 +6,10 @@ class HomeController {
     // [GET] /
     async index(req, res, next) {
         try {
-            const news = await News.findOne().lean()
-            const member = await Member.find().lean()
-            res.render('home', { news, member })
+            const news = await News.find({ category: "science" }).lean();
+            const member = await Member.find({}).lean();
+            res.render('home', { news, member });
+
         }
         catch (error) {
             next(error);

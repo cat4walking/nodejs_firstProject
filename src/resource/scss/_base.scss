@@ -8,6 +8,9 @@ html{
     font-size: 100%;
     box-sizing: inherit;
 }
+body{
+    font-family: 'Sora', sans-serif !important;
+}
 a {
     text-decoration: none;
 }
@@ -51,7 +54,12 @@ a:hover {
 .nav-link{
     padding: 0 6px 0 6px;
 }
-
+.card-header{
+    border-bottom: none;
+}
+.h1, h1 {
+    font-size: calc(0.9rem + 1.5vw);
+}
 // custom silde
 .owl-theme{
  & .owl-nav{
