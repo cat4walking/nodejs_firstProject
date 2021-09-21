@@ -60,9 +60,10 @@ class loginController {
         });
         res.header('authorization', token);
         res.redirect('home');
+        // res.send('Please');
     }
     index(req, res, next) {
-        res.render('home', { layout: 'login.hbs' });
+        res.render('listmembers', { layout: 'login.hbs' });
     };
 };
 

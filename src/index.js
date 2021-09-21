@@ -10,7 +10,6 @@ const SortMiddleware = require('./common/middlewares/SortMiddleware')
 // Using Node.js `require()`
 const { Console } = require('console');
 const route = require('./routes');
-const port = process.env.PORT_API;
 const db = require('./config/db');
 db.connect();
 app.set('view engine', 'hbs');
